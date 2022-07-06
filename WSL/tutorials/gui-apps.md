@@ -1,13 +1,11 @@
 ---
 title: Run Linux GUI apps with WSL 
-description: Learn how WSL support running Linux GUI apps.
-keywords: wsl, windows, windows subsystem for linux, gui apps 
-ms.date: 04/27/2021
+description: Learn how WSL support running Linux GUI apps. 
+ms.date: 05/19/2022
 ms.topic: article
-ms.localizationpriority: medium
 ---
 
-# Run Linux GUI apps on the Windows Subsystem for Linux (preview)
+# Run Linux GUI apps on the Windows Subsystem for Linux
 
 You can now preview Windows Subsystem for Linux (WSL) support for running Linux GUI applications (X11 and Wayland) on Windows in a fully integrated desktop experience.
 
@@ -26,23 +24,24 @@ You can now integrate both Windows and Linux applications into your workflow for
 
 ### Prerequisites
 
-- You will need to be on **Windows 11 Build 22000 or higher** to access this feature. You can join the [Windows Insiders Program](https://insider.windows.com/) to get the latest preview builds.
+- You will need to be on **Windows 11 Build 22000 or later** to access this feature.
 
 - **Installed driver for vGPU**
 
-    To run Linux GUI apps, you should first install the preview driver matching your system below. This will enable you to use a virtual GPU (vGPU) so you can benefit from hardware accelerated OpenGL rendering.
+    To run Linux GUI apps, you should first install the driver matching your system below. This will enable you to use a virtual GPU (vGPU) so you can benefit from hardware accelerated OpenGL rendering.
 
-  - [**Intel** GPU driver for WSL](https://downloadcenter.intel.com/download/29526)
+  - [**Intel** GPU driver for WSL](https://www.intel.com/content/www/us/en/download/19344/intel-graphics-windows-dch-drivers.html)
   - [**AMD** GPU driver for WSL](https://www.amd.com/en/support/kb/release-notes/rn-rad-win-wsl-support)
   - [**NVIDIA** GPU driver for WSL](https://developer.nvidia.com/cuda/wsl)
 
 ### Fresh install - No prior WSL installation
 
-If you have not already followed the steps to [install WSL](../install-win10.md), you can use the new simplified install command.
+If you have not already done so, [install WSL](../install.md) and set up a user name and password for your Linux distribution.
 
-1. Open a command prompt with administrator privileges. 
+1. Open a command prompt with administrator privileges.
 
     *Select **Start**, type **PowerShell**, right-click **Windows PowerShell**, and then select **Run as administrator**.*
+
 2. Run this command and reboot your machine when prompted:
 
     ```powershell
@@ -72,11 +71,14 @@ If you already have WSL installed on your machine, you can update to the latest 
     ```
 
 > [!NOTE]
-> Linux GUI apps are only supported with WSL 2 and will not work with a Linux distribution configured for WSL 1. Read about [how to change your distribution from WSL 1 to WSL 2](../reference.md#set-your-distribution-version-to-wsl-1-or-wsl-2).
+> Linux GUI apps are only supported with WSL 2 and will not work with a Linux distribution configured for WSL 1. Read about [how to change your distribution from WSL 1 to WSL 2](../basic-commands.md#set-wsl-version-to-1-or-2).
 
 ## Run Linux GUI apps
 
 You can run the following commands from your Linux terminal to download and install these popular Linux applications. If you are using a different distribution than Ubuntu, it may use a different package manager than apt. Once the Linux application is installed, you can find it in your **Start** menu under the distribution name. For example: `Ubuntu -> Microsoft Edge`.
+
+> [!NOTE]
+> Support for GUI apps on WSL does not provide a full desktop experience. It relies on Windows desktop, so installing desktop-focused tools or apps may not be supported. To request additional support, you can file an issue in the [WSLg repo on GitHub](https://github.com/microsoft/wslg/issues).
 
 ### Update the packages in your distribution
 
@@ -106,7 +108,7 @@ To launch, enter: `gimp`
 
 ### Install Nautilus
 
-Nautilus, also known as GNOME Files, is the file manager for the GNOME desktop. (Similiar to Windows File Explorer).
+Nautilus, also known as GNOME Files, is the file manager for the GNOME desktop. (Similar to Windows File Explorer).
 
 ```bash
 sudo apt install nautilus -y
@@ -160,9 +162,6 @@ To launch, enter: `teams`
 
 ### Install Microsoft Edge browser for Linux
 
-To install Microsoft Edge for Linux:
-
-1. Use curl to download the package: `sudo curl https://packages.microsoft.com/repos/edge/pool/main/m/microsoft-edge-dev/microsoft-edge-dev_91.0.852.0-1_amd64.deb -o /tmp/edge.deb`
-2. Use apt to install it: `sudo apt install /tmp/edge.deb -y`
+Find information on how to [install the Microsoft Edge browser for Linux using the command line on the Edge Insider site](https://www.microsoftedgeinsider.com/download/?platform=linux-deb). Select **Get instructions** under the Command line installation section of the page.
 
 To launch, enter: `microsoft-edge`

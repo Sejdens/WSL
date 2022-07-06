@@ -1,16 +1,14 @@
 ---
 title: File Permissions for WSL
 description: Understanding how WSL determines file permissions in Windows
-keywords: BashOnWindows, bash, wsl, wsl2, windows, windows subsystem for linux, windowssubsystem, ubuntu, debian, suse, windows 10, file,permissions
-ms.date: 01/14/2020
+keywords: File permissions, bash, wsl, wsl2, windows, windows subsystem for linux, windows subsystem, ubuntu, debian, suse, windows 10
+ms.date: 09/27/2021
 ms.topic: article
-ms.assetid: 7afaeacf-435a-4e58-bff0-a9f0d75b8a51
-ms.localizationpriority: high
 ---
 
 # File Permissions for WSL
 
-This page details how Linux file permissions are interpreted across the Windows Subsystem for Linux, especially when accessing resources inside of Windows on the NT file system. This documentation assumes a basic understanding of the [Linux file system permissions structure](https://wiki.archlinux.org/index.php/File_permissions_and_attributes) and the [umask command](https://en.wikipedia.org/wiki/Umask).
+This page details how Linux file permissions are interpreted across the Windows Subsystem for Linux, especially when accessing resources inside of Windows on the NT file system. This documentation assumes a basic understanding of the [Linux file system permissions structure](https://wiki.archlinux.org/title/File_permissions_and_attributes) and the [umask command](https://en.wikipedia.org/wiki/Umask).
 
 When accessing Windows files from WSL the file permissions are either calculated from Windows permissions, or are read from metadata that has been added to the file by WSL. This metadata is not enabled by default.
 
@@ -61,7 +59,7 @@ Chmod will only have one effect, if you remove all the write attributes of a fil
 
 Chmod will change or add metadata depending on the file's already existing metadata. 
 
-Please keep in mind that you cannot give yourself more access than what you have on Windows, even if the metadata says that is the case. For example, you could set the metadata to display that you have write permissions to a file using `chmod 777`, but if you tried to access that file you would still not be able to write to it. This is thanks to interopability, as any read or write commands to Windows files are routed through your Windows user permissions.
+Please keep in mind that you cannot give yourself more access than what you have on Windows, even if the metadata says that is the case. For example, you could set the metadata to display that you have write permissions to a file using `chmod 777`, but if you tried to access that file you would still not be able to write to it. This is thanks to interoperability, as any read or write commands to Windows files are routed through your Windows user permissions.
 
 #### Creating a file in DriveFS
 
@@ -103,4 +101,4 @@ Any files created, modified, or accessed in the Linux root file system follow st
 
 You can configure your file permissions inside of your Windows drives using the mount options in wsl.conf. The mount options allow you to set `umask`, `dmask` and `fmask` permissions masks. The `umask` is applied to all files, the `dmask` is applied just to directories and the `fmask` is applied just to files. These permission masks are then put through a logical OR operation when being applied to files, e.g: If you have a `umask` value of `023` and an `fmask` value of `022` then the resulting permissions mask for files will be `023`.
 
-Please see the [Configure per distro launch settings with wslconf](./wsl-config.md#configure-per-distro-launch-settings-with-wslconf) article for instructions on how to do this.
+Learn more: [Per distribution configuration options with wsl.conf](/windows/wsl/wsl-config#per-distribution-configuration-options-with-wslconf).

@@ -1,10 +1,8 @@
 ---
 title: Add or connect a database with WSL
 description: Learn how to set up MySQL MongoDB, PostgreSQL, SQLite, Microsoft SQL Server, or Redis on the Windows Subsystem for Linux.
-keywords: wsl, windows, windowssubsystem, MySQL MongoDB, PostgreSQL, SQLite, Microsoft SQL Server, Redis, windows 10
-ms.date: 04/07/2021
+ms.date: 03/04/2022
 ms.topic: article
-ms.localizationpriority: medium
 ---
 
 # Get started with databases on Windows Subsystem for Linux
@@ -13,10 +11,9 @@ This step-by-step guide will help you get started connecting your project in WSL
 
 ## Prerequisites
 
-- Running Windows 10, [updated to version 2004](ms-settings:windowsupdate), **Build 19041** or higher.
-- [WSL enabled and installed, and updated to WSL 2](../install-win10.md).
-- [Linux distribution installed](../install-win10.md#step-6---install-your-linux-distribution-of-choice) (Ubuntu was used in our examples).
-- Linux distribution [running in WSL 2 mode](../install-win10.md#set-your-distribution-version-to-wsl-1-or-wsl-2). (WSL can run distributions in both v1 or v2 mode. You can check this by opening PowerShell and entering: `wsl -l -v`).
+- Running Windows 10, [updated to version 2004](ms-settings:windowsupdate), **Build 19041** or later.
+- [Install WSL and create a user name and password for the Linux distribution](../install.md).
+- Linux distribution [running in WSL 2 mode](../basic-commands.md#set-wsl-version-to-1-or-2).
 
 ## Differences between database systems
 
@@ -113,18 +110,17 @@ To work with with PostgreSQL databases in VS Code, try the [PostgreSQL extension
 
 To install MongoDB (version 5.0) on WSL (Ubuntu 20.04):
 
-1. Open your WSL terminal (ie. Ubuntu) and go to the root directory: `cd ~`
+1. Open your WSL terminal (ie. Ubuntu) and go to your home directory: `cd ~`
 2. Update your Ubuntu packages: `sudo apt update`
 3. Import the public key used by the MongoDB package management system: `wget -qO - https://www.mongodb.org/static/pgp/server-5.0.asc | sudo apt-key add -`
 4. Create a list file for MongoDB: `echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/5.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-5.0.list`
 5. Reload local package database: `sudo apt-get update`
 6. Install MongoDB packages: `sudo apt-get install -y mongodb-org`
 7. Confirm installation and get the version number: `mongod --version`
-8. Go to your home directory: `cd / && cd home`
-9. Make a directory to store data: `mkdir -p data/db`
-10. Run a Mongo instance: `sudo mongod --dbpath ~/data/db`
-11. Check to see that your MongoDB instance is running with: `ps -e | grep 'mongod'`
-12. To exit the MongoDB Shell, use the shortcut keys: Ctrl + C
+8. Make a directory to store data: `mkdir -p ~/data/db`
+9. Run a Mongo instance: `sudo mongod --dbpath ~/data/db`
+10. Check to see that your MongoDB instance is running with: `ps -e | grep 'mongod'`
+11. To exit the MongoDB Shell, use the shortcut keys: Ctrl + C
 
 > [!TIP]
 > Installing MongoDB may require slightly different steps depending on the Linux distribution being used for installation. See the [MongoDB installation tutorials](https://docs.mongodb.com/manual/installation/#mongodb-installation-tutorials). Also note that MongoDB installation may differ depending on the version # that you are aiming to install. Use the version drop-down list in the top-left corner of the MongoDB documentation to select the version that aligns with your goal.
@@ -164,6 +160,9 @@ Learn more in the MongoDB docs:
 
 To install SQL Server on WSL (ie. Ubuntu), follow this quickstart: [Install SQL Server and create a database on Ubuntu](/sql/linux/quickstart-install-connect-ubuntu).
 
+> [!NOTE]
+> Although it is possible to install and configure SQL Server on WSL, it is not a supported configuration. Additionally, SQL Server on Linux requires **systemd**, which is not included on WSL.
+
 To work with Microsoft SQL Server databases in VS Code, try the [MSSQL extension](https://marketplace.visualstudio.com/items?itemName=ms-mssql.mssql).
 
 ## Install SQLite
@@ -180,6 +179,10 @@ To create a test database, called "example.db", enter: `sqlite3 example.db`
 To see a list of your SQLite databases, enter: `.databases`
 
 To see the status of your database, enter: `.dbinfo ?DB?`
+
+Database will be empty after creation. You can create a new table for your database with `CREATE TABLE empty (kol INTEGER);`.
+
+Now entering the `.dbinfo ?DB?` will show the database you have created.
 
 To exit the SQLite prompt, enter: `.exit`
 
@@ -233,8 +236,8 @@ To set up your own custom alias, or shortcut, for executing these commands:
 
 ### Error: directory-sync fdatasync Invalid argument
 
-Ensure that you are running your Linux distribution in WSL 2 mode. For help switching from WSL 1 to WSL 2, see [Set your distribution version to WSL 1 or WSL 2](../reference.md).
+Ensure that you are running your Linux distribution in WSL 2 mode. For help switching from WSL 1 to WSL 2, see [Set your distribution version to WSL 1 or WSL 2](../basic-commands.md).
 
 ## Additional resources
 
-- [Setting up your development environment on Windows 10](/windows/dev-environment/)
+- [Setting up your development environment on Windows](/windows/dev-environment/)

@@ -2,9 +2,8 @@
 title: Get started using VS Code with WSL
 description: Learn how to set up VS Code to author and debug code using the Windows Subsystem for Linux.
 keywords: wsl, windows, windowssubsystem, gnu, linux, bash, vs code, remote extension, debug, path, visual studio
-ms.date: 05/28/2020
+ms.date: 09/27/2021
 ms.topic: article
-ms.localizationpriority: medium
 ---
 
 # Get started using Visual Studio Code with Windows Subsystem for Linux
@@ -97,7 +96,7 @@ The new Windows Terminal enables multiple tabs (quickly switch between Command P
 
 * [VS Code Remote Development](https://code.visualstudio.com/docs/remote/remote-overview)
 * [Remote development tips and tricks](https://code.visualstudio.com/docs/remote/troubleshooting)
-* [Remote development with WSL tutorial](https://code.visualstudio.com/remote-tutorials/wsl/getting-started)
+* [Remote development with WSL tutorial](https://code.visualstudio.com/docs/remote/wsl-tutorial)
 * [Using Docker with WSL 2 and VS Code](https://code.visualstudio.com/blogs/2020/03/02/docker-in-wsl2)
 * [Using C++ and WSL in VS Code](https://code.visualstudio.com/docs/cpp/config-wsl)
 * [Remote R Service for Linux](/visualstudio/rtvs/setting-up-remote-r-service-on-linux)

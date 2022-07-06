@@ -2,9 +2,8 @@
 title: Case Sensitivity
 description: Learn how case sensitive file names are handled between Windows and Linux file systems, how to adjust these settings by directory with WSL, and how to troubleshoot issues.
 keywords: case sensitivity, wsl, windows, linux, ntfs, mount
-ms.date: 08/12/2021
+ms.date: 09/27/2021
 ms.topic: article
-ms.localizationpriority: medium
 ---
 
 # Adjust case sensitivity
@@ -12,7 +11,7 @@ ms.localizationpriority: medium
 Case sensitivity determines whether uppercase (FOO.txt) and lowercase (foo.txt) letters are handled as distinct (case-sensitive) or equivalent (case-insensitive) in a file name or directory.
 
 - Case-sensitive: FOO.txt ≠ foo.txt ≠ Foo.txt
-- Case-insenstive: FOO.text = foo.txt = Foo.txt
+- Case-insensitive: FOO.txt = foo.txt = Foo.txt
 
 ## Differences between Windows and Linux case sensitivity
 
@@ -69,7 +68,7 @@ A directory must be empty in order to change the case sensitivity flag attribute
 
 ### Case sensitivity inheritance
 
-When creating new directories, those directories will inherit the case sensitivity from it's parent directory.
+When creating new directories, those directories will inherit the case sensitivity from its parent directory.
 
 > [!WARNING]
 > There is an exception to this inheritance policy when running in WSL 1 mode. When a distribution is running in WSL 1 mode, the per-directory case sensitivity flag is not inherited; directories created in a case sensitive directory are not automatically case sensitive themselves. You must explicitly mark each directory as case sensitive
@@ -78,13 +77,13 @@ When creating new directories, those directories will inherit the case sensitivi
 
 Case sensitivity can be managed when mounting a drive on the Windows Subsystem for Linux using the WSL config file. Each Linux distribution that you have installed can have it's own WSL config file, called `/etc/wsl.conf`. For more information about how to mount a drive, see [Get started mounting a Linux disk in WSL 2](./wsl2-mount-disk.md).
 
-To configure the case sensitivity option in the `wsl.config` file when mounting a drive:
+To configure the case sensitivity option in the `wsl.conf` file when mounting a drive:
 
 1. Open the Linux distribution you will be using (ie. Ubuntu).
 2. Change directories up until you see the `etc` folder (this may require you to `cd ..` up from the `home` directory).
 3. List the files in the `etc` directory to see if a `wsl.conf` file already exists (use the `ls` command, or `explorer.exe .` to view the directory with Windows File Explorer).
 4. If the `wsl.conf` file does not already exist, you can create it using: `sudo touch wsl.conf` or by running `sudo nano /etc/wsl.conf`, which will create the file upon saving from the Nano editor.
-5. The following options are available for you to add into your `wsl.config` file:
+5. The following options are available for you to add into your `wsl.conf` file:
 
 **Default setting: `dir` for enabling case sensitivity per directory.**
 
@@ -113,7 +112,7 @@ You will need to restart WSL after making any changes to the `wsl.conf` file in 
 
 > [!TIP]
 > To mount a drive (which uses the DrvFs filesystem plugin to make the disk available under /mnt, such as /mnt/c, /mnt/d, etc) with a specific case sensitivity setting for ALL drives, use `/etc/wsl.conf` as described above. To set the default mount options for one specific drive, use the [`/etc/fstab` file](http://manpages.ubuntu.com/manpages/xenial/man5/fstab.5.html) to specify these options.
-> For more WSL configuration options, see [Configure per distro launch settings with wslconf](./wsl-config.md#configure-per-distro-launch-settings-with-wslconf).
+> For more WSL configuration options, see [Configure per distro launch settings with wslconf](/windows/wsl/wsl-config#configure-settings-with-wslconfig-and-wslconf).
 
 ### Changing the case sensitivity on a drive mounted to a WSL distribution
 

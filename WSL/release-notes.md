@@ -3,133 +3,148 @@ title: Release Notes for WSL
 description: Read release notes for the Windows Subsystem for Linux. These release notes include fixed issues and are updated weekly.
 keywords: release notes, wsl, windows, windows subsystem for linux, windowssubsystem, ubuntu
 author: benhillis
-ms.date: 04/08/2021
+ms.date: 09/27/2021
 ms.topic: article
-ms.localizationpriority: high
 ---
 
 # Release Notes for Windows Subsystem for Linux
 
 ## Build 21364
+
 For general Windows information on build 21364 visit the [Windows blog](https://blogs.windows.com/windows-insider/2021/04/21/announcing-windows-10-insider-preview-build-21364/).
 
-* GUI apps are now available! For more information see [this blog post](https://devblogs.microsoft.com/commandline/the-initial-preview-of-gui-app-support-is-now-available-for-the-windows-subsystem-for-linux).
-* Resolve error when accessing files via \\\\wsl.localhost\\.
-* Fix potential deadlock in LxssManager service.
+- GUI apps are now available! For more information see [this blog post](https://devblogs.microsoft.com/commandline/the-initial-preview-of-gui-app-support-is-now-available-for-the-windows-subsystem-for-linux).
+- Resolve error when accessing files via \\\\wsl.localhost\\.
+- Fix potential deadlock in LxssManager service.
 
 ## Build 21354
+
 For general Windows information on build 21354 visit the [Windows blog](https://blogs.windows.com/windows-insider/2021/04/07/announcing-windows-10-insider-preview-build-21354/).
 
-* Switch the \\wsl prefix to \\wsl.localhost to avoid issues when there is a machine on the network named "wsl". \\wsl$ will continue to work.
-* Enable Linux quick access icon for wow processes.
-* Update issue where version 2 was always being passed via wslapi RegisterDistribution.
-* Change the fmask of the /usr/lib/wsl/lib directory to 222 so files are marked as executable [GH 3847]
-* Fix wsl service crash if Virtual Machine Platform is not enabled.
+- Switch the \\wsl prefix to \\wsl.localhost to avoid issues when there is a machine on the network named "wsl". \\wsl$ will continue to work.
+- Enable Linux quick access icon for wow processes.
+- Update issue where version 2 was always being passed via wslapi RegisterDistribution.
+- Change the fmask of the /usr/lib/wsl/lib directory to 222 so files are marked as executable [GH 3847]
+- Fix wsl service crash if Virtual Machine Platform is not enabled.
 
 ## Build 21286
+
 For general Windows information on build 21286 visit the [Windows blog](https://blogs.windows.com/windows-insider/2021/01/06/announcing-windows-10-insider-preview-build-21286/).
 
-* Introduce wsl.exe --cd command to set current working directory of a command.
-* Improve mapping of NTSTATUS to Linux error codes. [GH 6063]
-* Improve wsl.exe --mount error reporting.
-* Added an option to /etc/wsl.conf to enable start up commands:
-```
+- Introduce wsl.exe --cd command to set current working directory of a command.
+- Improve mapping of NTSTATUS to Linux error codes. [GH 6063]
+- Improve wsl.exe --mount error reporting.
+- Added an option to /etc/wsl.conf to enable start up commands:
+
+```console
 [boot]
 command=<string>
 ```
 
 ## Build 20226
+
 For general Windows information on build 20226 visit the [Windows blog](https://blogs.windows.com/windows-insider/2020/09/30/announcing-windows-10-insider-preview-build-20226/).
 
-* Fix crash in LxssManager service. [GH 5902]
+- Fix crash in LxssManager service. [GH 5902]
 
 ## Build 20211
+
 For general Windows information on build 20211 visit the [Windows blog](https://blogs.windows.com/windows-insider/2020/09/10/announcing-windows-10-insider-preview-build-20211/).
 
-* Introduce `wsl.exe --mount` for mounting physical or virtual disks. For more information see [Access Linux filesystems in Windows and WSL 2](https://devblogs.microsoft.com/commandline/access-linux-filesystems-in-windows-and-wsl-2/).
-* Fix crash in LxssManager service when checking if the VM is idle. [GH 5768]
-* Support for compressed VHD files. [GH 4103]
-* Ensure that Linux user mode libs installed to c:\windows\system32\lxss\lib are preserved across OS upgrade. [GH 5848]
-* Added the ability to list available distributions that can be installed with `wsl --install --list-distributions`.
-* WSL instances are now terminated when the user logs off.
+- Introduce `wsl.exe --mount` for mounting physical or virtual disks. For more information see [Access Linux filesystems in Windows and WSL 2](https://devblogs.microsoft.com/commandline/access-linux-filesystems-in-windows-and-wsl-2/).
+- Fix crash in LxssManager service when checking if the VM is idle. [GH 5768]
+- Support for compressed VHD files. [GH 4103]
+- Ensure that Linux user mode libs installed to c:\windows\system32\lxss\lib are preserved across OS upgrade. [GH 5848]
+- Added the ability to list available distributions that can be installed with `wsl --install --list-distributions`.
+- WSL instances are now terminated when the user logs off.
 
 ## Build 20190
+
 For general Windows information on build 20190 visit the [Windows blog](https://blogs.windows.com/windowsexperience/2020/08/12/announcing-windows-10-insider-preview-build-20190/).
 
-* Fix bug preventing WSL1 instances from launching. [GH 5633]
-* Fix hang when redirecting Windows process output. [GH 5648]
-* Add %userprofile%\\.wslconfig option to control the VM idle timeout (wsl2.vmIdleTimeout=<time_in_ms>).
-* Support launching app execution aliases from WSL.
-* Added support for installing the WSL2 kernel and distributions to wsl.exe --install.
+- Fix bug preventing WSL1 instances from launching. [GH 5633]
+- Fix hang when redirecting Windows process output. [GH 5648]
+- Add %userprofile%\\.wslconfig option to control the VM idle timeout (wsl2.vmIdleTimeout=<time_in_ms>).
+- Support launching app execution aliases from WSL.
+- Added support for installing the WSL2 kernel and distributions to wsl.exe --install.
 
 ## Build 20175
+
 For general Windows information on build 20175 visit the [Windows blog](https://blogs.windows.com/windowsexperience/2020/07/22/announcing-windows-10-insider-preview-build-20175/).
 
-* Adjust default memory assignment of WSL2 VM to be 50% of host memory or 8GB, whichever is less [GH 4166].
-* Change \\\\wsl$ prefix to \\\\wsl to support URI parsing. The old \\\\wsl$ path is still supported.
-* Enable nested virtualization for WSL2 by default on amd64. You can disable this via %userprofile%\\.wslconfig ([wsl2] nestedVirtualization=false).
-* Make wsl.exe --update demand start Microsoft Update.
-* Support renaming over a read-only file in DrvFs.
-* Ensure error messages are always printed in the correct codepage.
+- Adjust default memory assignment of WSL2 VM to be 50% of host memory or 8GB, whichever is less [GH 4166].
+- Change \\\\wsl$ prefix to \\\\wsl to support URI parsing. The old \\\\wsl$ path is still supported.
+- Enable nested virtualization for WSL2 by default on amd64. You can disable this via %userprofile%\\.wslconfig ([wsl2] nestedVirtualization=false).
+- Make wsl.exe --update demand start Microsoft Update.
+- Support renaming over a read-only file in DrvFs.
+- Ensure error messages are always printed in the correct codepage.
 
 ## Build 20150
+
 For general Windows information on build 20150 visit the [Windows blog](https://blogs.windows.com/windowsexperience/2020/06/17/announcing-windows-10-insider-preview-build-20150/).
 
-* WSL2 GPU compute see [Windows blog](https://blogs.windows.com/windowsexperience/2020/06/17/announcing-windows-10-insider-preview-build-20150/) for more information.
-* Introduce wsl.exe --install command line option to easily set up WSL.
-* Introduce wsl.exe --update command line option to manage updates to the WSL2 kernel. 
-* Set WSL2 as the default.
-* Increase WSL2 vm graceful shutdown timeout.
-* Fix virtio-9p race condition when mapping device memory.
-* Don't run an elevated 9p server if UAC is disabled.
+- WSL2 GPU compute see [Windows blog](https://blogs.windows.com/windowsexperience/2020/06/17/announcing-windows-10-insider-preview-build-20150/) for more information.
+- Introduce wsl.exe --install command line option to easily set up WSL.
+- Introduce wsl.exe --update command line option to manage updates to the WSL2 kernel. 
+- Set WSL2 as the default.
+- Increase WSL2 vm graceful shutdown timeout.
+- Fix virtio-9p race condition when mapping device memory.
+- Don't run an elevated 9p server if UAC is disabled.
 
 ## Build 19640
+
 For general Windows information on build 19640 visit the [Windows blog](https://blogs.windows.com/windowsexperience/2020/06/03/announcing-windows-10-insider-preview-build-19640/).
 
-* [WSL2] Stability improvements for virtio-9p (drvfs).
+- [WSL2] Stability improvements for virtio-9p (drvfs).
 
 ## Build 19555
+
 For general Windows information on build 19555 visit the [Windows blog](https://blogs.windows.com/windowsexperience/2020/01/30/announcing-windows-10-insider-preview-build-19555/).
 
-* [WSL2] Use a memory cgroup to limit the amount of memory used by install and conversion operations [GH 4669]
-* Make wsl.exe present when the Windows Subsystem for Linux optional component is not enabled to improve feature discoverability.
-* Change wsl.exe to print help text if the WSL optional component is not installed
-* Fix race condition when creating instances
-* Create wslclient.dll that contains all command line functionality
-* Prevent crash during LxssManagerUser service stop
-* Fix wslapi.dll fast fail when distroName parameter is NULL
+- [WSL2] Use a memory cgroup to limit the amount of memory used by install and conversion operations [GH 4669]
+- Make wsl.exe present when the Windows Subsystem for Linux optional component is not enabled to improve feature discoverability.
+- Change wsl.exe to print help text if the WSL optional component is not installed
+- Fix race condition when creating instances
+- Create wslclient.dll that contains all command line functionality
+- Prevent crash during LxssManagerUser service stop
+- Fix wslapi.dll fast fail when distroName parameter is NULL
 
 ## Build 19041
+
 For general Windows information on build 19041 visit the [Windows blog](https://blogs.windows.com/windowsexperience/2019/12/10/announcing-windows-10-insider-preview-build-19041/).
 
-* [WSL2] Clear the signal mask before launching the processes
-* [WSL2] Update Linux kernel to 4.19.84
-* Handle creation of /etc/resolv.conf symlink when the symlink is non-relative
+- [WSL2] Clear the signal mask before launching the processes
+- [WSL2] Update Linux kernel to 4.19.84
+- Handle creation of /etc/resolv.conf symlink when the symlink is non-relative
 
 ## Build 19028
+
 For general Windows information on build 19028 visit the [Windows blog](https://blogs.windows.com/windowsexperience/2019/11/19/announcing-windows-10-insider-preview-build-19028/).
 
-* [WSL2] Update Linux kernel to 4.19.81
-* [WSL2] Change the default permission of /dev/net/tun to 0666 [GH 4629]
-* [WSL2] Tweak default amount of memory assigned to Linux VM to be 80% of host memory
-* [WSL2] fix interop server to handle requests with a timeout so bad callers cannot hang the server
+- [WSL2] Update Linux kernel to 4.19.81
+- [WSL2] Change the default permission of /dev/net/tun to 0666 [GH 4629]
+- [WSL2] Tweak default amount of memory assigned to Linux VM to be 80% of host memory
+- [WSL2] fix interop server to handle requests with a timeout so bad callers cannot hang the server
 
 ## Build 19018
+
 For general Windows information on build 19018 visit the [Windows blog](https://blogs.windows.com/windowsexperience/2019/11/05/announcing-windows-10-insider-preview-build-19018/).
 
-* [WSL2] Use cache=mmap as the default for 9p mounts to fix dotnet apps
-* [WSL2] Fixes for localhost relay [GH 4340]
-* [WSL2] Introduce a cross-distro shared tmpfs mount for sharing state between distros
-* Fix restoring persistent network drive for \\\\wsl$
+- [WSL2] Use cache=mmap as the default for 9p mounts to fix dotnet apps
+- [WSL2] Fixes for localhost relay [GH 4340]
+- [WSL2] Introduce a cross-distro shared tmpfs mount for sharing state between distros
+- Fix restoring persistent network drive for \\\\wsl$
 
 ## Build 19013
+
 For general Windows information on build 19013 visit the [Windows blog](https://blogs.windows.com/windowsexperience/2019/10/29/announcing-windows-10-insider-preview-build-19013/).
 
-* [WSL2] Improve memory performance of WSL utility VM. Memory that is no longer in use will be freed back to the host.
-* [WSL2] Update kernel version to 4.19.79. (add CONFIG_HIGH_RES_TIMERS, CONFIG_TASK_XACCT, CONFIG_TASK_IO_ACCOUNTING, CONFIG_SCHED_HRTICK, and CONFIG_BRIDGE_VLAN_FILTERING).
-* [WSL2] Fix input relay to handle cases where stdin is a pipe handle that is not closed [GH 4424]
-* Make the check for \\\\wsl$ case-insensitive.
-```
+- [WSL2] Improve memory performance of WSL utility VM. Memory that is no longer in use will be freed back to the host.
+- [WSL2] Update kernel version to 4.19.79. (add CONFIG_HIGH_RES_TIMERS, CONFIG_TASK_XACCT, CONFIG_TASK_IO_ACCOUNTING, CONFIG_SCHED_HRTICK, and CONFIG_BRIDGE_VLAN_FILTERING).
+- [WSL2] Fix input relay to handle cases where stdin is a pipe handle that is not closed [GH 4424]
+- Make the check for \\\\wsl$ case-insensitive.
+
+```console
 [wsl2]
 pageReporting = <bool>    # Enable or disable the free memory page reporting feature (default true).
 idleThreshold = <integer> # Set the idle threshold for memory compaction, 0 disables the feature (default 1).
@@ -629,7 +644,7 @@ For general Windows information on build 17110 visit the [Windows Blog](https://
 * Allow /init to be terminated from Windows [GH 2928].
 * DrvFs now uses per-directory case sensitivity by default (equivalent to the "case=dir" mount option).
     * Using "case=force" (the old behavior) requires setting a registry key. Run the following command to enable "case=force" if you need to use it: reg add HKLM\SYSTEM\CurrentControlSet\Services\lxss /v DrvFsAllowForceCaseSensitivity /t REG_DWORD /d 1
-    * If you have existing directories created with WSL in older version of Windows which need to be case sensitive, use fsutil.exe to mark them as case sensitive: fsutil.exe file setcasesensitiveinfo <path> enable
+    * If you have existing directories created with WSL in older version of Windows which need to be case sensitive, use fsutil.exe to mark them as case sensitive: fsutil.exe file setcasesensitiveinfo `<path>` enable
 * NULL terminate strings returned from the uname syscall.
 
 ### Console
@@ -1007,7 +1022,7 @@ For general Windows information on build 16273 visit the [Windows Blog](https://
 Total Tests: 1904<br/>
 Total Skipped Tests: 209<br/>
 Total Failures: 229<br/>
-[LTP Test Run Logs](https://github.com/Microsoft/CommandLine-Documentation/tree/live/LTP_Results/16273)<br/>
+
 
 ## Build 16257
 
@@ -1068,7 +1083,6 @@ For general Windows information on build 16251 visit the [Windows Blog](https://
 Number of Passing Tests: 768</br>
 Number of Failing Tests: 244</br>
 Number of Skipped Tests: 96</br>
-[LTP Test Run Logs](https://github.com/Microsoft/CommandLine-Documentation/tree/live/LTP_Results/16251)<br/>
 
 </br>
 
@@ -1294,7 +1308,6 @@ For general Windows information on build 15031 visit the [Windows Blog](https://
 ### LTP Results:
 Number of Passing Test: 737</br>
 Number of non-Passing (failing, skipped, etc…): 255 </br>
-[LTP Test Run Logs](https://github.com/Microsoft/CommandLine-Documentation/tree/live/LTP_Results/15031)<br/>
 
 <br/>
 
@@ -1324,7 +1337,6 @@ For general Windows information on build 15025 visit the [Windows Blog](https://
 ### LTP Results:
 Number of Passing Test: 732</br>
 Number of non-Passing (failing, skipped, etc…): 255 </br>
-[LTP Test Run Logs](https://github.com/Microsoft/CommandLine-Documentation/tree/live/LTP_Results/15025)<br/>
 
 <br/>
 
@@ -1346,7 +1358,7 @@ For general Windows information on build 15019 visit the [Windows Blog](https://
 ### LTP Results:
 Number of Passing Test: 714 </br>
 Number of non-Passing (failing, skipped, etc…): 249 </br>
-[LTP Test Run Logs](https://github.com/Microsoft/CommandLine-Documentation/tree/live/LTP_Results/15019)<br/>
+
 
 <br/>
 
@@ -1370,14 +1382,13 @@ For general Windows information on build 15014 visit the [Windows Blog](https://
 ### LTP Results:
 Number of Passing Test: 709 </br>
 Number of non-Passing (failing, skipped, etc…): 255 </br>
-[LTP Test Run Logs](https://github.com/Microsoft/CommandLine-Documentation/tree/live/LTP_Results/15014)<br/>
 
 ### Syscall Summary
 Total Syscalls: 384 </br>
 Total Implemented: 235 </br>
 Total Stubbed: 22 </br>
 Total Unimplemented: 127 </br>
-[Detailed Breakdown](https://github.com/Microsoft/CommandLine-Documentation/tree/live/LTP_Results/15014/Syscalls.txt)<br/>
+
 
 <br/>
 
@@ -1388,7 +1399,7 @@ For general Windows information on build 15007 visit the [Windows Blog]( https:/
 
 ### Known Issue
 
-- There is a known bug where the console does not recognize some Ctrl + <key> input.  This includes the ctrl-c command which will act as a normal 'c' keypress.
+- There is a known bug where the console does not recognize some Ctrl + `<key>` input.  This includes the ctrl-c command which will act as a normal 'c' keypress.
 
   - Workaround: Map an alternate key to Ctrl+C. For example, to map Ctrl+K to Ctrl+C do:
 `stty intr \^k`.  This mapping is per terminal and will have to be done *every* time bash is launched. Users can explore the option to include this in their `.bashrc`
@@ -1403,7 +1414,6 @@ For general Windows information on build 15007 visit the [Windows Blog]( https:/
 ### LTP Results:
 Number of Passing Test: 709 </br>
 Number of non-Passing (failing, skipped, etc…): 255 </br>
-[LTP Test Run Logs](https://github.com/Microsoft/CommandLine-Documentation/tree/live/LTP_Results/15007)<br/>
 
 <br/>
 
@@ -1415,7 +1425,7 @@ For general Windows information on build 15002 visit the [Windows Blog](https://
 ### Known Issue
 
 Two known issues:
-- There is a known bug where the console does not recognize some Ctrl + <key> input.  This includes the ctrl-c command which will act as a normal 'c' keypress.
+- There is a known bug where the console does not recognize some Ctrl + `<key>` input.  This includes the ctrl-c command which will act as a normal 'c' keypress.
 
   - Workaround: Map an alternate key to Ctrl+C. For example, to map Ctrl+K to Ctrl+C do:
 `stty intr \^k`.  This mapping is per terminal and will have to be done *every* time bash is launched. Users can explore the option to include this in their `.bashrc`
@@ -1462,7 +1472,6 @@ Two known issues:
 ### LTP Results:
 Number of Passing Test: 690 </br>
 Number of non-Passing (failing, skipped, etc…): 274 </br>
-[LTP Test Run Logs](https://github.com/Microsoft/CommandLine-Documentation/tree/live/LTP_Results/15002)<br/>
 
 <br/>
 
@@ -1497,7 +1506,6 @@ For general Windows information on build 14986 visit the [Windows Blog](https://
 ### LTP Results:
 Number of Passing Test: 669 </br>
 Number of non-Passing (failing, skipped, etc…): 258 </br>
-[LTP Test Run Logs](https://github.com/Microsoft/CommandLine-Documentation/tree/live/LTP_Results/14986)<br/>
 
 <br/>
 
@@ -1523,7 +1531,6 @@ For general Windows information on build 14971 visit the [Windows Blog](https://
 Unchanged from 14965 </br>
 Number of Passing Test: 664 </br>
 Number of non-Passing (failing, skipped, etc…): 263 </br>
-[LTP Test Run Logs](https://github.com/Microsoft/CommandLine-Documentation/tree/live/LTP_Results/14965)<br/>
 
 <br/>
 
@@ -1536,7 +1543,6 @@ For general Windows information on build 14965 visit the [Windows Blog](https://
 
 - Support for Netlink sockets NETLINK_ROUTE protocol's RTM_GETLINK and RTM_GETADDR (GH #468)
   - Enables ifconfig and ip commands for network enumeration
-  - More information can be found in our [WSL Networking blog post](https://blogs.msdn.microsoft.com/wsl/2016/11/08/225/).
 
 - /sbin is now in the user's path by default
 - NT user path now appended to the WSL path by default (i.e. you can now type notepad.exe without adding System32 to the Linux path)
@@ -1547,7 +1553,7 @@ For general Windows information on build 14965 visit the [Windows Blog](https://
 - Added support for CLONE_PARENT
 - Fixed error where piping gets stuck i.e. bash -c "ls -alR /" | bash -c "cat" (GH #1214)
 - Handle requests to connect to the current terminal.
-- Mark /proc/<pid>/oom_score_adj as writable.
+- Mark `/proc/<pid>/oom_score_adj` as writable.
 - Add /sys/fs/cgroup folder.
 - sched_setaffinity should return number of affinity bits mask
 - Fix ELF validation logic which incorrectly assumes interpreter paths must be less than 64 characters long. (GH #743)
@@ -1561,7 +1567,6 @@ For general Windows information on build 14965 visit the [Windows Blog](https://
 ### LTP Results:
 Number of Passing Test: 664 </br>
 Number of non-Passing (failing, skipped, etc…): 263 </br>
-[LTP Test Run Logs](https://github.com/Microsoft/CommandLine-Documentation/tree/live/LTP_Results/14965)<br/>
 
 <br/>
 
@@ -1580,7 +1585,6 @@ For general Windows information on build 14959 visit the [Windows Blog](https://
 ### LTP Results:
 Number of Passing Test: 665 </br>
 Number of non-Passing (failing, skipped, etc…): 263 </br>
-[LTP Test Run Logs](https://github.com/Microsoft/CommandLine-Documentation/tree/live/LTP_Results/14959)<br/>
 
 <br/>
 
@@ -1596,7 +1600,6 @@ For general Windows information on build 14955 visit the [Windows Blog](https://
 ### LTP Results:
 Number of Passing Test: 665 </br>
 Number of non-Passing (failing, skipped, etc…): 263 </br>
-[LTP Test Run Logs](https://github.com/Microsoft/CommandLine-Documentation/tree/live/LTP_Results/14955)<br/>
 
 <br/>
 
@@ -1619,7 +1622,7 @@ $ cmd.exe /c dir
 More information can be found at:
 
 - [WSL Team Blog for Interop](/archive/blogs/wsl/windows-and-ubuntu-interoperability)<br/>
-- [MSDN Interop Documentation](./interop.md)<br/>
+- [WSL File Systems Documentation](./filesystems.md)<br/>
 
 ### Fixed
 
@@ -1633,7 +1636,6 @@ More information can be found at:
 ### LTP Results:
 Number of Passing Test: 665 </br>
 Number of non-Passing (failing, skipped, etc…): 263 </br>
-[LTP Test Run Logs](https://github.com/Microsoft/CommandLine-Documentation/tree/live/LTP_Results/14951)<br/>
 
 <br/>
 
@@ -1658,7 +1660,6 @@ For general Windows information on build 14946 visit the [Windows Blog](https://
 ### LTP Results:
 Number of Passing Test: 665 </br>
 Number of non-Passing (failing, skipped, etc…): 263 </br>
-[LTP Test Run Logs](https://github.com/Microsoft/CommandLine-Documentation/tree/live/LTP_Results/14946)<br/>
 
 <br/>
 
@@ -1680,7 +1681,6 @@ For general Windows information on build 14942 visit the [Windows Blog](https://
 ### LTP Results:
 Number of Passing Test: 665 </br>
 Number of non-Passing (failing, skipped, etc…): 263 </br>
-[LTP Test Run Logs](https://github.com/Microsoft/CommandLine-Documentation/tree/live/LTP_Results/14942)<br/>
 
 ### Syscall Support
 Below are a list of new or enhanced syscalls that have some implementation in WSL. The syscalls on this list are supported in at least one scenario, but may not have all parameters supported at this time.
@@ -1703,7 +1703,7 @@ WSL is experiencing an issue with some socket implementations.  The bugcheck man
 - Implemented the chroot system call
 - Improvements in inotify ~~including support for notifications generated from Windows applications on DrvFs~~
   - Correction: Inotify support for changes originating from Windows applications not available at this time.
-- Socket binding to IPV6::<port n> now supports IPV6_V6ONLY  (GH #68, #157, #393, #460, #674, #740, #982, #996)
+- Socket binding to `IPV6::<port n>` now supports `IPV6_V6ONLY`  (GH #68, #157, #393, #460, #674, #740, #982, #996)
 - WNOWAIT behavior for waitid systemcall implemented (GH #638)
 - Support for IP socket options IP_HDRINCL and IP_TTL
 - Zero-length read() should return immediately (GH #975)
@@ -1716,7 +1716,6 @@ WSL is experiencing an issue with some socket implementations.  The bugcheck man
 ### LTP Results:
 Number of Passing Test: 664 </br>
 Number of non-Passing (failing, skipped, etc…): 264 </br>
-[LTP Test Run Logs](https://github.com/Microsoft/CommandLine-Documentation/tree/live/LTP_Results/14936)<br/>
 
 ### Syscall Support
 Below are a list of new or enhanced syscalls that have some implementation in WSL. The syscalls on this list are supported in at least one scenario, but may not have all parameters supported at this time.
@@ -1756,7 +1755,6 @@ For general Windows information on build 14926 visit the [Windows Blog](https://
 ### LTP Results:
 Number of Passing Test: 651 </br>
 Number of non-Passing (failing, skipped, etc…): 258 </br>
-[LTP Test Run Logs](https://github.com/Microsoft/CommandLine-Documentation/tree/live/LTP_Results/14926)<br/>
 
 <br/>
 
@@ -1891,7 +1889,7 @@ For general Windows information on build 14361 visit the [Windows Blog](https://
   - Users may case.txt and CASE.TXT on their /mnt/c drives
   - Case sensitivity is only supported within Bash on Ubuntu on Windows. When outside of Bash NTFS will report the files correctly, but unexpected behavior may occur interacting with the files from Windows.
   - The root of each volume (i.e. /mnt/c) is not case sensitive
-  - More information on handling these files in Windows can be found [here](https://support.microsoft.com/kb/100625).
+  - More information on handling these files in Windows can be found [here](./case-sensitivity.md).
 - Greatly enhanced pty / tty support.  Applications like TMUX now supported (GH #40)
 - Fixed install issue where user accounts not always created
 - Optimized command line arg structure allowing for extremely long argument list. (GH #153)
@@ -1963,7 +1961,7 @@ Information on VolFs and DriveFs can be found on the [WSL Blog](/archive/blogs/w
 ### Fixed
 - Fixed install issue when the Windows user had Unicode characters in the username
 - The apt-get update udev workaround in the FAQ is now provided by default on first run
-- Enabled symlinks in DriveFs (/mnt/<drive>) directories
+- Enabled symlinks in DriveFs (`/mnt/<drive>`) directories
 - Symlinks now work between DriveFs and VolFs
 - Addressed top level path parsing issue: ls .// will now work as expected
 - npm install on DriveFs and the -g options are now working
@@ -2033,7 +2031,7 @@ For general Windows information on build 14332 visit the [Windows Blog](https://
 * For more information on build 14328, visit: https://aka.ms/wip14328
 
 ### Fixed
-* Symlink improvements for non /mnt/<drive> files
+* Symlink improvements for non `/mnt/<drive>` files
     * npm install now works
     * jdk / jre now installable using instructions found [here](https://xubuntugeek.blogspot.com/2012/09/how-to-install-oracle-jdk-7-manually-in.html).
     * known issue: symlinks do not work for Windows mounts.  Functionality will be available in a later build
